@@ -1,0 +1,16 @@
+<div class="py-8 h-full overflow-y-scroll">
+  @for (m of memo; track m) {
+  <div class="px-8">
+    <a [href]="m.link" target="_blank" class="cursor-pointer group flex flex-row px-1 gap-3 pt-4">
+      <img [src]="m.image_url" alt="alt" class="h-24 rounded shadow">
+      <div class="block w-full">
+        <p class="bg-white text-gray-400 group-hover:text-indigo-800 transition-colors">{{m.link}}</p>
+        <h1 class="text-ellipsis overflow-hidden h-20 pt-2 text-gray-600 group-hover:text-gray-900 transition-colors">
+          {{m.title}}</h1>
+      </div>
+      <brn-separator hlmSeparator />
+    </a>
+
+  </div>
+  }
+</div>

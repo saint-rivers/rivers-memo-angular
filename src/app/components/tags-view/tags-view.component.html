@@ -1,0 +1,7 @@
+<div class="flex flex-row flex-wrap gap-1">
+  @for (tag of tags; track tag) {
+  <button class="px-4 hover:border-gray-700 border rounded-lg "
+    [ngClass]="{'bg-indigo-700 text-gray-100': tag.isSelected == true}" (click)="selectTag(tag.name)">{{tag.name}}
+  </button>
+  }
+</div>
