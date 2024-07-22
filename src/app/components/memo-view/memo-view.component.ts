@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MemoService } from '@services/memo.service';
 import { HlmSeparatorDirective } from '@spartan-ng/ui-separator-helm';
 import { BrnSeparatorComponent } from '@spartan-ng/ui-separator-brain';
@@ -18,6 +18,7 @@ import {
   HlmMenuShortcutComponent,
   HlmSubMenuComponent,
 } from '@spartan-ng/ui-menu-helm';
+import { Tag } from '../tags-view/tags-view.component';
 
 
 @Component({
@@ -54,6 +55,15 @@ export class MemoViewComponent {
   memo: any[] = [];
   ngOnInit() {
     this.memoService.fetchMemos(this.size)
+      .subscribe((res: any) => {
+        this.memo = res;
+      });
+  }
+
+  @Input() selectedTags!: string[];
+  ngOnChanges() {
+    this.memoService
+      .fetchTagFilteredMemoes(this.size, this.selectedTags, this.lastId)
       .subscribe((res: any) => {
         this.memo = res;
       });

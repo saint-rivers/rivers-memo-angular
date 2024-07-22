@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MemoService } from '@services/memo.service';
 
-type Tag = { name: string, isSelected: boolean }
+export type Tag = { name: string, isSelected: boolean }
 
 @Component({
   selector: 'app-tags-view',
@@ -16,6 +16,7 @@ export class TagsViewComponent {
   constructor(private memoService: MemoService) { }
 
   tags: Tag[] = [];
+  @Output() select: EventEmitter<Tag[]> = new EventEmitter();
 
   ngOnInit(): void {
     this.memoService
@@ -30,5 +31,7 @@ export class TagsViewComponent {
       if (t.name == tag) return { name: t.name, isSelected: !t.isSelected };
       else return t;
     });
+    this.select.emit(this.tags);
   }
+
 }
