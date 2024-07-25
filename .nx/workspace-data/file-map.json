@@ -12,17 +12,27 @@
     "@angular/platform-browser": "^18.1.0",
     "@angular/platform-browser-dynamic": "^18.1.0",
     "@angular/router": "^18.1.0",
+    "@ng-icons/core": "^25.1.0",
+    "@ng-icons/lucide": "^26.3.0",
+    "@ngx-grpc/common": "^3.1.2",
+    "@ngx-grpc/core": "^3.1.2",
+    "@ngx-grpc/grpc-web-client": "^3.1.2",
+    "@ngx-grpc/well-known-types": "^3.1.2",
     "@spartan-ng/ui-core": "^0.0.1-alpha.352",
+    "@spartan-ng/ui-menu-brain": "0.0.1-alpha.352",
+    "@spartan-ng/ui-separator-brain": "0.0.1-alpha.352",
     "class-variance-authority": "^0.6.0",
     "clsx": "^1.2.1",
-    "open-graph-scraper": "^6.6.2",
+    "google-protobuf": "^3.21.4",
     "rxjs": "~7.8.0",
+    "ts-proto": "^1.181.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3",
     "@angular-devkit/build-angular": "^18.1.0",
     "@angular/cli": "^18.1.0",
     "@angular/compiler-cli": "^18.1.0",
     "@spartan-ng/cli": "^0.0.1-alpha.360",
+    "@types/google-protobuf": "^3.15.12",
     "@types/jasmine": "~5.1.0",
     "autoprefixer": "^10.4.19",
     "jasmine-core": "~5.1.0",
@@ -38,11 +48,23 @@
     "typescript": "~5.5.2"
   },
   "pathMappings": {
+    "@environments/*": [
+      "./src/environments/*"
+    ],
     "@services/*": [
       "./src/app/services/*"
     ],
     "@spartan-ng/ui-button-helm": [
-      "./lib/components/ui-button-helm/src/index.ts"
+      "./libs/ui/src/index.ts"
+    ],
+    "@spartan-ng/ui-separator-helm": [
+      "./libs/ui/ui-separator-helm/src/index.ts"
+    ],
+    "@spartan-ng/ui-menu-helm": [
+      "./libs/ui-menu-helm/src/index.ts"
+    ],
+    "@spartan-ng/ui-icon-helm": [
+      "./libs/ui-icon-helm/src/index.ts"
     ]
   },
   "nxJsonPlugins": [],
@@ -70,33 +92,126 @@
           "hash": "5336636969995539451"
         },
         {
+          "file": "Dockerfile",
+          "hash": "18214287657555900283"
+        },
+        {
           "file": "README.md",
           "hash": "17666660831919774586"
         },
         {
           "file": "angular.json",
-          "hash": "9889607374506465277"
+          "hash": "4034418534973447926"
         },
         {
-          "file": "lib/components/ui-button-helm/src/index.ts",
+          "file": "docker-compose.yml",
+          "hash": "1531934704364887438"
+        },
+        {
+          "file": "libs/ui-icon-helm/src/index.ts",
+          "hash": "15313191911740362975"
+        },
+        {
+          "file": "libs/ui-icon-helm/src/lib/hlm-icon.component.spec.ts",
+          "hash": "4553494485907318760"
+        },
+        {
+          "file": "libs/ui-icon-helm/src/lib/hlm-icon.component.ts",
+          "hash": "166660981264464896"
+        },
+        {
+          "file": "libs/ui-menu-helm/src/index.ts",
+          "hash": "13241682308641820299"
+        },
+        {
+          "file": "libs/ui-menu-helm/src/lib/hlm-menu-bar-item.directive.ts",
+          "hash": "3744638824110709831"
+        },
+        {
+          "file": "libs/ui-menu-helm/src/lib/hlm-menu-bar.component.ts",
+          "hash": "11800997345689984536"
+        },
+        {
+          "file": "libs/ui-menu-helm/src/lib/hlm-menu-group.component.ts",
+          "hash": "2390418594404509437"
+        },
+        {
+          "file": "libs/ui-menu-helm/src/lib/hlm-menu-item-check.component.ts",
+          "hash": "442394939553680435"
+        },
+        {
+          "file": "libs/ui-menu-helm/src/lib/hlm-menu-item-checkbox.directive.ts",
+          "hash": "10046947516892420249"
+        },
+        {
+          "file": "libs/ui-menu-helm/src/lib/hlm-menu-item-icon.directive.ts",
+          "hash": "4055428653028769667"
+        },
+        {
+          "file": "libs/ui-menu-helm/src/lib/hlm-menu-item-radio.component.ts",
+          "hash": "4649231814150844074"
+        },
+        {
+          "file": "libs/ui-menu-helm/src/lib/hlm-menu-item-radio.directive.ts",
+          "hash": "3553151661794877184"
+        },
+        {
+          "file": "libs/ui-menu-helm/src/lib/hlm-menu-item-sub-indicator.component.ts",
+          "hash": "2939968297664753911"
+        },
+        {
+          "file": "libs/ui-menu-helm/src/lib/hlm-menu-item.directive.ts",
+          "hash": "74896198707272556"
+        },
+        {
+          "file": "libs/ui-menu-helm/src/lib/hlm-menu-label.component.ts",
+          "hash": "11565386289737268086"
+        },
+        {
+          "file": "libs/ui-menu-helm/src/lib/hlm-menu-separator.component.ts",
+          "hash": "8105341354212619150"
+        },
+        {
+          "file": "libs/ui-menu-helm/src/lib/hlm-menu-shortcut.component.ts",
+          "hash": "7736691487501238920"
+        },
+        {
+          "file": "libs/ui-menu-helm/src/lib/hlm-menu.component.ts",
+          "hash": "8732262688409467834"
+        },
+        {
+          "file": "libs/ui-menu-helm/src/lib/hlm-sub-menu.component.ts",
+          "hash": "3690756610582847424"
+        },
+        {
+          "file": "libs/ui/src/index.ts",
           "hash": "8982221364966377158"
         },
         {
-          "file": "lib/components/ui-button-helm/src/lib/hlm-button.directive.ts",
+          "file": "libs/ui/src/lib/hlm-button.directive.ts",
           "hash": "6707392129396539941"
         },
         {
+          "file": "libs/ui/ui-separator-helm/src/index.ts",
+          "hash": "11009445571986260606"
+        },
+        {
+          "file": "libs/ui/ui-separator-helm/src/lib/hlm-separator.directive.ts",
+          "hash": "1948996755155265181"
+        },
+        {
           "file": "package-lock.json",
-          "hash": "5757399197411172717"
+          "hash": "2854202291830077118"
         },
         {
           "file": "package.json",
-          "hash": "1100580361943380005",
+          "hash": "15614983055472912810",
           "deps": [
             "npm:@angular-devkit/build-angular",
             "npm:@angular/cli",
             "npm:@angular/compiler-cli",
             "npm:@spartan-ng/cli",
+            "npm:@types/google-protobuf",
             "npm:@types/jasmine",
             "npm:autoprefixer",
             "npm:jasmine-core",
@@ -120,11 +235,20 @@
             "npm:@angular/platform-browser",
             "npm:@angular/platform-browser-dynamic",
             "npm:@angular/router",
+            "npm:@ng-icons/core",
+            "npm:@ng-icons/lucide",
+            "npm:@ngx-grpc/common",
+            "npm:@ngx-grpc/core",
+            "npm:@ngx-grpc/grpc-web-client",
+            "npm:@ngx-grpc/well-known-types",
             "npm:@spartan-ng/ui-core",
+            "npm:@spartan-ng/ui-menu-brain",
+            "npm:@spartan-ng/ui-separator-brain",
             "npm:class-variance-authority",
             "npm:clsx",
-            "npm:open-graph-scraper",
+            "npm:google-protobuf",
             "npm:rxjs",
+            "npm:ts-proto",
             "npm:tslib",
             "npm:zone.js"
           ]
@@ -139,7 +263,7 @@
         },
         {
           "file": "src/app/app.component.html",
-          "hash": "810673923907465249"
+          "hash": "1497120756889058095"
         },
         {
           "file": "src/app/app.component.spec.ts",
@@ -147,7 +271,7 @@
         },
         {
           "file": "src/app/app.component.ts",
-          "hash": "4836853017745750348"
+          "hash": "6939414774003810864"
         },
         {
           "file": "src/app/app.config.ts",
@@ -155,7 +279,7 @@
         },
         {
           "file": "src/app/app.routes.ts",
-          "hash": "12397496131277534773"
+          "hash": "3702762281346710247"
         },
         {
           "file": "src/app/components/memo-view/memo-view.component.css",
@@ -163,7 +287,7 @@
         },
         {
           "file": "src/app/components/memo-view/memo-view.component.html",
-          "hash": "2441317810936233655"
+          "hash": "16088330446184846987"
         },
         {
           "file": "src/app/components/memo-view/memo-view.component.spec.ts",
@@ -171,7 +295,23 @@
         },
         {
           "file": "src/app/components/memo-view/memo-view.component.ts",
-          "hash": "13047556946350768233"
+          "hash": "1475532936136642349"
+        },
+        {
+          "file": "src/app/components/tags-view/tags-view.component.css",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "src/app/components/tags-view/tags-view.component.html",
+          "hash": "3842003839651465731"
+        },
+        {
+          "file": "src/app/components/tags-view/tags-view.component.spec.ts",
+          "hash": "11032637994067288196"
+        },
+        {
+          "file": "src/app/components/tags-view/tags-view.component.ts",
+          "hash": "8182164424022431082"
         },
         {
           "file": "src/app/services/memo.service.spec.ts",
@@ -179,7 +319,15 @@
         },
         {
           "file": "src/app/services/memo.service.ts",
-          "hash": "8732535518787225368"
+          "hash": "1819979932123406096"
+        },
+        {
+          "file": "src/environments/env.prod.ts",
+          "hash": "14418952482351769058"
+        },
+        {
+          "file": "src/environments/env.ts",
+          "hash": "12744881539078032079"
         },
         {
           "file": "src/index.html",
@@ -187,7 +335,7 @@
         },
         {
           "file": "src/main.ts",
-          "hash": "4927504514031276065"
+          "hash": "5998493886562125245"
         },
         {
           "file": "src/styles.css",
@@ -203,7 +351,7 @@
         },
         {
           "file": "tsconfig.json",
-          "hash": "11960157135625663917"
+          "hash": "11661187398593858160"
         },
         {
           "file": "tsconfig.spec.json",

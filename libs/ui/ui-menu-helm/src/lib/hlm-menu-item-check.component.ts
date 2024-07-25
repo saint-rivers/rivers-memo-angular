@@ -1,7 +1,9 @@
 import { Component, computed, input } from '@angular/core';
+import { provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
 import { hlm } from '@spartan-ng/ui-core';
-import { HlmIconComponent, provideIcons } from '@spartan-ng/ui-icon-helm';
+import { HlmIconComponent } from '@spartan-ng/ui-icon-helm';
+// import { HlmIconComponent, provideIcons } from './ui/ui-icon-helm/src';
 import type { ClassValue } from 'clsx';
 
 @Component({

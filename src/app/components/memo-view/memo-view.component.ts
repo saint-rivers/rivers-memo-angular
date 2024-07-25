@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MemoService } from '@services/memo.service';
 import { HlmSeparatorDirective } from '@spartan-ng/ui-separator-helm';
 import { BrnSeparatorComponent } from '@spartan-ng/ui-separator-brain';
+import { HlmScrollAreaComponent } from '@spartan-ng/ui-scrollarea-helm';
+import { TagEditComponent } from "../tag-edit/tag-edit.component";
 import {
   HlmMenuComponent,
   HlmMenuGroupComponent,
@@ -18,7 +20,16 @@ import {
   HlmMenuShortcutComponent,
   HlmSubMenuComponent,
 } from '@spartan-ng/ui-menu-helm';
-import { Tag } from '../tags-view/tags-view.component';
+import { UiMode } from '../../app.component';
+
+export type Memo = {
+  id: number,
+  title: string,
+  link: string,
+  description: string,
+  tags: string[]
+  image_url: string;
+}
 
 
 @Component({
@@ -41,22 +52,30 @@ import { Tag } from '../tags-view/tags-view.component';
     HlmMenuSeparatorComponent,
     HlmMenuShortcutComponent,
     HlmSubMenuComponent,
+    HlmScrollAreaComponent,
+    HlmSeparatorDirective,
+    TagEditComponent
   ],
   templateUrl: './memo-view.component.html',
   styleUrl: './memo-view.component.css'
 })
 export class MemoViewComponent {
+  @Output() memoSelected = new EventEmitter<Memo>();
+  selectMemo(m: Memo) {
+    this.memoSelected.emit(m);
+  }
 
   constructor(private memoService: MemoService) { }
-
+  @Input() mode: UiMode = "view";
   size = 10;
   lastId = "";
 
-  memo: any[] = [];
+  memos: any[] = [];
   ngOnInit() {
-    this.memoService.fetchMemos(this.size)
+    this.memoService
+      .fetchMemos(this.size)
       .subscribe((res: any) => {
-        this.memo = res;
+        this.memos = res;
       });
   }
 
@@ -65,7 +84,7 @@ export class MemoViewComponent {
     this.memoService
       .fetchTagFilteredMemoes(this.size, this.selectedTags, this.lastId)
       .subscribe((res: any) => {
-        this.memo = res;
+        this.memos = res;
       });
   }
 }

@@ -1,0 +1,91 @@
+volumes:
+  app_db_data:
+
+services:
+  web-app:
+    # image: saintrivers/flashcards-web:v1
+    image: asia-northeast3-docker.pkg.dev/calm-inkwell-316507/fl-cards/angular2:v1
+    build:
+      context: ./fl-cards-angular
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "4200:80"
+
+  # scraper:
+  #   image: asia-northeast3-docker.pkg.dev/calm-inkwell-316507/flashcards-webapp/scraper2:v1
+  #   build:
+  #     context: ./scraper
+  #     dockerfile: Dockerfile
+  #   restart: unless-stopped
+  #   ports:
+  #     - "5000:5000"
+
+  api:
+    image: asia-northeast3-docker.pkg.dev/calm-inkwell-316507/fl-cards/golang-api:v1
+    build:
+      context: ./fl-cards-golang
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "5050:5050"
+    env_file:
+      - "./fl-cards-golang/.env"
+
+  # db:
+  #   image: postgres:14.4-alpine
+  #   container_name: postgres-db
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready"]
+  #     interval: 5s
+  #     retries: 3
+  #   volumes:
+  #     - app_db_data:/var/lib/postgresql/data
+  #   environment:
+  #     - POSTGRES_DB=default
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=password
+  #   ports:
+  #     - "5432:5432"
+
+  # keycloak-db:
+  #   image: postgres:14.4-alpine
+  #   container_name: keycloak-db
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready"]
+  #     interval: 5s
+  #     retries: 3
+  #   volumes:
+  #     - keycloak_db_data:/var/lib/postgresql/data
+  #   environment:
+  #     POSTGRES_DB: keycloak
+  #     POSTGRES_USER: keycloak
+  #     POSTGRES_PASSWORD: keycloak
+
+  # keycloak-service:
+  #   container_name: keycloak
+  #   restart: on-failure
+  #   build:
+  #     context: ./flashcards-auth
+  #     dockerfile: keycloak.Dockerfile
+  #   depends_on:
+  #     - keycloak-db
+  #   environment:
+  #     - KEYCLOAK_ADMIN=user
+  #     - KEYCLOAK_ADMIN_PASSWORD=admin
+  #     # - KEYCLOAK_LOGLEVEL=TRACE
+  #     - KC_DB=postgres
+  #     - KC_DB_URL=jdbc:postgresql://keycloak-db:5432/keycloak
+  #     - KC_DB_USERNAME=keycloak
+  #     - KC_DB_PASSWORD=keycloak
+  #   command: [
+  #       "start-dev",
+  #       # "--db=postgres",
+  #       # "--db-url=jdbc:postgresql://keycloak-db:5432/keycloak",
+  #     ]
+  #   # command: [ "start", "--optimized" ]
+  #   ports:
+  #     - "8800:8080"
+  #     - "8443:8443"

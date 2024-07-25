@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { MemoService } from '@services/memo.service';
+import { HlmScrollAreaComponent } from '@spartan-ng/ui-scrollarea-helm';
+
 
 export type Tag = { name: string, isSelected: boolean }
 
 @Component({
   selector: 'app-tags-view',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HlmScrollAreaComponent],
   templateUrl: './tags-view.component.html',
   styleUrl: './tags-view.component.css'
 })
@@ -34,4 +36,8 @@ export class TagsViewComponent {
     this.select.emit(this.tags);
   }
 
+  clearTags() {
+    this.tags = this.tags.map((t) => ({ name: t.name, isSelected: false }));
+    this.select.emit([]);
+  }
 }
