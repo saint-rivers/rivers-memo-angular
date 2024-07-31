@@ -3,7 +3,7 @@
   [ngClass]="{'': mode == 'view', '': mode == 'edit'}">
 
   @if (mode == 'edit') {
-  <div class="py-2 bg-slate-200">
+  <div class="py-2">
     @for (m of memos; track m) {
     <button (click)="selectMemo(m)" class="
     hover:bg-white hover:shadow 

@@ -62,7 +62,10 @@ export class TagEditComponent {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.memo != undefined) {
-      if (this.memo.tags == undefined) return;
+      if (this.memo.tags == undefined) {
+        this.assignedTags = [];
+        return;
+      };
       this.assignedTags = this.memo.tags;
       this.originalTags = this.assignedTags;
     }
