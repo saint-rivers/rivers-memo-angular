@@ -2,14 +2,14 @@
   <form (submit)="addTagToList($event)" class="w-full">
     <input type="text" [formControl]="tag" class="
 w-full py-3 outline-none
-text-gray-700 transition-colors 
-hover:border-indigo-400 hover:text-indigo-700
+text-primary-1 transition-colors 
+hover:border-secondary-1 hover:text-secondary-2
 " rows="1" hlmInput placeholder="Type your message here." />
   </form>
   <button [ngClass]="
   {
     'bg-gray-100 cursor-default':assignedTags.length <= 0,
-    'bg-indigo-200 hover:bg-indigo-400 text-indigo-700 hover:border-indigo-400 hover:text-gray-50 ':assignedTags.length > 0,
+    'bg-primary-1 hover:bg-primary-2 hover:border-secondary-2 text-gray-50 ':assignedTags.length > 0,
   }
   " class="
   w-24 py-1 px-2 rounded-lg
@@ -17,21 +17,39 @@ hover:border-indigo-400 hover:text-indigo-700
   " (click)="appendTags()">Tag</button>
 </div>
 
-<p class="text-gray-700 px-4 mt-2">
+<p class="text-gray-700 px-4 my-3">
   <span>Tags: </span>
   @for (t of assignedTags; track t) {
-  <span class="rounded-xl mx-1 py-1 px-3 text-sm text-bold hover:bg-red-200 cursor-pointer" (click)="removeTag(t)"
+  <span class="rounded-xl mx-1 py-1 px-3 text-sm text-bold hover:bg-secondary-1 cursor-pointer" (click)="removeTag(t)"
     hlmBadge>{{t}}</span>
+  } @empty {
+  <span class="ml-5 italic text-gray-400">none</span>
   }
 </p>
 
 @if(memo !== undefined) {
-<div class="flex flex-row p-6 text-sm card-height">
-  <img [src]="memo.image_url" alt="alt" class="h-24 rounded shadow">
-  <div class="px-4 block w-full">
-    <p class="bg-white text-gray-400 group-hover:text-indigo-800 transition-colors">{{memo.link}}</p>
-    <h1 class="text-ellipsis overflow-hidden h-20 pt-2 text-gray-600 group-hover:text-gray-900 transition-colors">
+
+<div class="
+      rounded-xl transition-all
+      group flex flex-row px-2 pb-4 gap-3 text-sm
+      ">
+  <img appImageFallback [src]="memo.image_url" class="w-24 h-24 object-cover rounded-lg shadow">
+  <div class="
+      flex flex-col py-1 justify-evenly 
+      h-full lg:w-[520px] md:w-[480px] sm:w-[200px] w-[120px]
+      ">
+    <h1
+      class="text-ellipsis overflow-hidden whitespace-nowrap w-full text-gray-600 group-hover:text-gray-900 transition-colors">
       {{memo.title}}</h1>
+    <p
+      class="text-ellipsis overflow-hidden whitespace-nowrap w-full text-gray-700 group-hover:text-secondary-2 transition-colors">
+      {{memo.link}}</p>
+    <div class="text-gray-700 mt-2">
+      @for (t of memo.tags; track t) {
+      <span class="bg-gray-100 border rounded-xl mx-1 py-1 px-3 text-sm text-bold cursor-pointer" hlmBadge>{{t}}</span>
+      }
+    </div>
   </div>
 </div>
+
 }

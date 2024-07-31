@@ -1,43 +1,67 @@
 <!-- <app-tag-edit></app-tag-edit> -->
-<hlm-scroll-area class="px-3 min-w-full h-full rounded-md border-border flex flex-col"
-  [ngClass]="{'bg-white': mode == 'view', 'bg-orange-100': mode == 'edit'}">
-  @for (m of memos; track m) {
+<div class="overflow-x-hidden min-w-full h-full rounded-md border-border flex flex-col"
+  [ngClass]="{'': mode == 'view', '': mode == 'edit'}">
 
-  @if (mode == "edit") {
-  <button (click)="selectMemo(m)" class=" cursor-pointer group flex flex-row px-1 gap-3 pt-4 text-left">
-    <div class="rounded-lg bg-gray-300 w-[240px] h-[128px]">
-      <img [src]="m.image_url" alt="alt" class="mx-auto object-contain h-full rounded-xl shadow">
-    </div>
-    <div class="block w-full">
-      <p class="text-gray-600 group-hover:text-indigo-800 transition-colors">{{m.link}}</p>
-      <h1 class="text-ellipsis overflow-hidden h-8 pt-2 text-gray-700 group-hover:text-gray-900 transition-colors">
-        {{m.title}}</h1>
-      <p class="text-gray-700 mt-2">
-        @for (t of m.tags; track t) {
-        <span class="bg-gray-100 border rounded-xl mx-1 py-1 px-3 text-sm text-bold cursor-pointer"
-          hlmBadge>{{t}}</span>
-        }
-      </p>
-    </div>
-  </button>
+  @if (mode == 'edit') {
+  <div class="py-2 bg-slate-200">
+    @for (m of memos; track m) {
+    <button (click)="selectMemo(m)" class="
+    hover:bg-white hover:shadow 
+    rounded-xl transition-all cursor-pointer 
+    group flex flex-row p-2 gap-3 text-left
+    ">
+      <img appImageFallback [src]="m.image_url" class="w-24 h-24 object-cover rounded-lg shadow">
+      <div class="
+    flex flex-col py-1 justify-evenly 
+    h-full lg:w-[520px] md:w-[480px] sm:w-[200px] w-[120px]
+    ">
+        <h1
+          class="text-ellipsis overflow-hidden whitespace-nowrap w-full text-gray-600 group-hover:text-gray-900 transition-colors">
+          {{m.title}}</h1>
+        <p
+          class="text-ellipsis overflow-hidden whitespace-nowrap w-full text-gray-700 group-hover:text-secondary-2 transition-colors">
+          {{m.link}}</p>
+        <div class="text-gray-700 mt-2">
+          @for (t of m.tags; track t) {
+          <span class="bg-gray-100 border rounded-xl mx-1 py-1 px-3 text-sm text-bold cursor-pointer"
+            hlmBadge>{{t}}</span>
+          }
+        </div>
+      </div>
+    </button>
+    }
+    <div class="h-52"></div>
+  </div>
+  }
 
-  } @else {
-  <a [href]="m.link" target="_blank" class=" cursor-pointer group flex flex-row px-1 gap-3 pt-4">
-    <div class="rounded-lg bg-gray-300 w-[240px] h-[128px]">
-      <img [src]="m.image_url" alt="alt" class="mx-auto object-contain h-full rounded-xl shadow">
-    </div>
-    <div class="block w-full">
-      <p class="text-gray-700 group-hover:text-indigo-800 transition-colors">{{m.link}}</p>
-      <h1 class="text-ellipsis overflow-hidden h-8 pt-2 text-gray-600 group-hover:text-gray-900 transition-colors">
-        {{m.title}}</h1>
-      <p class="text-gray-700 mt-2">
-        @for (t of m.tags; track t) {
-        <span class="bg-gray-100 border rounded-xl mx-1 py-1 px-3 text-sm text-bold cursor-pointer"
-          hlmBadge>{{t}}</span>
-        }
-      </p>
-    </div>
-  </a>
+  @if (mode == 'view') {
+  <div class="py-2">
+    @for (m of memos; track m) {
+    <a [href]="m.link" target="_blank" class="
+      hover:bg-white hover:shadow 
+      rounded-xl transition-all cursor-pointer 
+      group flex flex-row p-2 gap-3
+      ">
+      <img appImageFallback [src]="m.image_url" class="w-24 h-24 object-cover rounded-lg shadow">
+      <div class="
+      flex flex-col py-1 justify-evenly 
+      h-full lg:w-[520px] md:w-[480px] sm:w-[200px] w-[120px]
+      ">
+        <h1
+          class="text-ellipsis overflow-hidden whitespace-nowrap w-full text-gray-600 group-hover:text-gray-900 transition-colors">
+          {{m.title}}</h1>
+        <p
+          class="text-ellipsis overflow-hidden whitespace-nowrap w-full text-gray-700 group-hover:text-secondary-2 transition-colors">
+          {{m.link}}</p>
+        <div class="text-gray-700 mt-2">
+          @for (t of m.tags; track t) {
+          <span class="bg-gray-100 border rounded-xl mx-1 py-1 px-3 text-sm text-bold cursor-pointer"
+            hlmBadge>{{t}}</span>
+          }
+        </div>
+      </div>
+    </a>
+    }
+  </div>
   }
-  }
-</hlm-scroll-area>
+</div>

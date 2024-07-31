@@ -5,11 +5,18 @@ import { Memo } from '../memo-view/memo-view.component';
 import { MemoService } from '@services/memo.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ImageFallbackDirective } from '../../directives/image-fallback.directive';
 
 @Component({
   selector: 'app-tag-edit',
   standalone: true,
-  imports: [CommonModule, HlmInputDirective, HlmBadgeDirective, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    HlmInputDirective,
+    HlmBadgeDirective,
+    ReactiveFormsModule,
+    ImageFallbackDirective,
+  ],
   templateUrl: './tag-edit.component.html',
   styleUrl: './tag-edit.component.css'
 })

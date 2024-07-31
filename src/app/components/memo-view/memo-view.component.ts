@@ -21,6 +21,7 @@ import {
   HlmSubMenuComponent,
 } from '@spartan-ng/ui-menu-helm';
 import { UiMode } from '../../app.component';
+import { ImageFallbackDirective } from '../../directives/image-fallback.directive';
 
 export type Memo = {
   id: number,
@@ -54,7 +55,8 @@ export type Memo = {
     HlmSubMenuComponent,
     HlmScrollAreaComponent,
     HlmSeparatorDirective,
-    TagEditComponent
+    TagEditComponent,
+    ImageFallbackDirective
   ],
   templateUrl: './memo-view.component.html',
   styleUrl: './memo-view.component.css'
