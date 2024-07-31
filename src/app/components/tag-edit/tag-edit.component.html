@@ -13,19 +13,20 @@ hover:border-indigo-400 hover:text-indigo-700
   }
   " class="
   w-24 py-1 px-2 rounded-lg
-   border transition-colors
+  border transition-colors
   " (click)="appendTags()">Tag</button>
 </div>
 
 <p class="text-gray-700 px-4 mt-2">
   <span>Tags: </span>
   @for (t of assignedTags; track t) {
-  <span class="rounded-xl mx-1 py-1 px-3 text-sm text-bold " hlmBadge>{{t}}</span>
+  <span class="rounded-xl mx-1 py-1 px-3 text-sm text-bold hover:bg-red-200 cursor-pointer" (click)="removeTag(t)"
+    hlmBadge>{{t}}</span>
   }
 </p>
 
 @if(memo !== undefined) {
-<div class="flex flex-row p-6 text-sm">
+<div class="flex flex-row p-6 text-sm card-height">
   <img [src]="memo.image_url" alt="alt" class="h-24 rounded shadow">
   <div class="px-4 block w-full">
     <p class="bg-white text-gray-400 group-hover:text-indigo-800 transition-colors">{{memo.link}}</p>

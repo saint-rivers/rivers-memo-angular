@@ -7,6 +7,9 @@ import { env } from '@environments/env';
   providedIn: 'root'
 })
 export class MemoService {
+  putTags(id: number, added: string[], removed: string[]) {
+    return this.http.put(`${env.serverUrl}/api/v1/memo/${id}/tags`, { removed, added })
+  }
 
   constructor(private http: HttpClient) { }
 

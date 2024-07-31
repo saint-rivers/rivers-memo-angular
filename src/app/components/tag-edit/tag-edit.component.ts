@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import { Memo } from '../memo-view/memo-view.component';
@@ -19,13 +19,18 @@ export class TagEditComponent {
   @Output() tagsSet = new EventEmitter();
 
   appendTags() {
+    // check which tags were added and which were removed
+    const removed = this.originalTags.filter(t => !this.assignedTags.includes(t));
+    const added = this.assignedTags;
+
     if (this.assignedTags.length <= 0) return;
     if (this.memo == undefined) {
       alert("select a memo");
       return;
     }
+
     this.memoService
-      .appendTags(this.memo.id, this.assignedTags)
+      .putTags(this.memo.id, added, removed)
       .subscribe((r: any) => {
         this.tag.setValue("");
         this.assignedTags = [];
@@ -33,15 +38,26 @@ export class TagEditComponent {
       });
   }
 
+  @Input() memo?: Memo
+  originalTags: string[] = []
+
   addTagToList(e: SubmitEvent) {
     e.preventDefault();
     this.assignedTags.push(this.tag.value);
     this.tag.setValue("");
   }
 
-  @Input() memo?: Memo
+  removeTag(tag: string) {
+    this.assignedTags = this.assignedTags.filter(t => tag !== t);
+  }
 
   constructor(private memoService: MemoService) { }
 
-
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.memo != undefined) {
+      if (this.memo.tags == undefined) return;
+      this.assignedTags = this.memo.tags;
+      this.originalTags = this.assignedTags;
+    }
+  }
 }
