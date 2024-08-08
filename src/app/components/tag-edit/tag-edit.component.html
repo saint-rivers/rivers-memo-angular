@@ -31,9 +31,9 @@ hover:border-secondary-1 hover:text-secondary-2
 
 <div class="
       rounded-xl transition-all
-      group flex flex-row px-2 pb-4 gap-3 text-sm
+      group flex flex-row px-2 pb-4 gap-3
       ">
-  <img appImageFallback [src]="memo.image_url" class="w-24 h-24 object-cover rounded-lg shadow">
+  <img appImageFallback [src]="memo.image_url" class="w-24 h-24 p-3 bg-primary-1 object-cover rounded-lg shadow">
   <div class="
       flex flex-col py-1 justify-evenly 
       h-full lg:w-[520px] md:w-[480px] sm:w-[200px] w-[120px]
@@ -42,13 +42,9 @@ hover:border-secondary-1 hover:text-secondary-2
       class="text-ellipsis overflow-hidden whitespace-nowrap w-full text-gray-600 group-hover:text-gray-900 transition-colors">
       {{memo.title}}</h1>
     <p
-      class="text-ellipsis overflow-hidden whitespace-nowrap w-full text-gray-700 group-hover:text-secondary-2 transition-colors">
+      class="text-ellipsis overflow-hidden whitespace-nowrap w-full text-gray-700 transition-colors">
       {{memo.link}}</p>
-    <div class="text-gray-700 mt-2">
-      @for (t of memo.tags; track t) {
-      <span class="bg-gray-100 border rounded-xl mx-1 py-1 px-3 text-sm text-bold cursor-pointer" hlmBadge>{{t}}</span>
-      }
-    </div>
+   
   </div>
 </div>
 
