@@ -36,4 +36,9 @@ export class MemoService {
   appendTags(memoId: number, tags: string[]) {
     return this.http.post(`${env.serverUrl}/api/v1/memo/${memoId}/tags`, { tags });
   }
+
+  insertMemo(payload: { message: string, tags: string[] }) {
+    const message = 'https://youtu.be/gd-83p2vwtM?si=bSJiLld0V6q5lcPo'
+    return this.http.post(`${env.serverUrl}/api/v1/memo`, { message, tags: [] });
+  }
 }

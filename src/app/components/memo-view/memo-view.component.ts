@@ -1,25 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MemoService } from '@services/memo.service';
-import { HlmSeparatorDirective } from '@spartan-ng/ui-separator-helm';
-import { BrnSeparatorComponent } from '@spartan-ng/ui-separator-brain';
-import { HlmScrollAreaComponent } from '@spartan-ng/ui-scrollarea-helm';
-import { TagEditComponent } from "../tag-edit/tag-edit.component";
-import {
-  HlmMenuComponent,
-  HlmMenuGroupComponent,
-  HlmMenuItemCheckComponent,
-  HlmMenuItemCheckboxDirective,
-  HlmMenuItemDirective,
-  HlmMenuItemIconDirective,
-  HlmMenuItemRadioComponent,
-  HlmMenuItemRadioDirective,
-  HlmMenuItemSubIndicatorComponent,
-  HlmMenuLabelComponent,
-  HlmMenuSeparatorComponent,
-  HlmMenuShortcutComponent,
-  HlmSubMenuComponent,
-} from '@spartan-ng/ui-menu-helm';
 import { UiMode } from '../../app.component';
 import { ImageFallbackDirective } from '../../directives/image-fallback.directive';
 
@@ -38,24 +19,6 @@ export type Memo = {
   standalone: true,
   imports: [
     CommonModule,
-    BrnSeparatorComponent,
-    HlmSeparatorDirective,
-    HlmMenuComponent,
-    HlmMenuGroupComponent,
-    HlmMenuItemCheckComponent,
-    HlmMenuItemCheckboxDirective,
-    HlmMenuItemDirective,
-    HlmMenuItemIconDirective,
-    HlmMenuItemRadioComponent,
-    HlmMenuItemRadioDirective,
-    HlmMenuItemSubIndicatorComponent,
-    HlmMenuLabelComponent,
-    HlmMenuSeparatorComponent,
-    HlmMenuShortcutComponent,
-    HlmSubMenuComponent,
-    HlmScrollAreaComponent,
-    HlmSeparatorDirective,
-    TagEditComponent,
     ImageFallbackDirective
   ],
   templateUrl: './memo-view.component.html',

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HlmButtonDirective } from '../../libs/ui/src';
 import { Memo, MemoViewComponent } from "./components/memo-view/memo-view.component";
@@ -8,6 +8,24 @@ import { HlmSwitchComponent } from '@spartan-ng/ui-switch-helm';
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
 import { NgToggleModule } from 'ng-toggle-button';
+import { CommonModule } from '@angular/common';
+import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
+import {
+  HlmMenuComponent,
+  HlmMenuGroupComponent,
+  HlmMenuItemDirective,
+  HlmMenuItemIconDirective,
+  HlmMenuItemSubIndicatorComponent,
+  HlmMenuLabelComponent,
+  HlmMenuSeparatorComponent,
+  HlmMenuShortcutComponent,
+  HlmSubMenuComponent,
+} from '@spartan-ng/ui-menu-helm';
+import { provideIcons } from '@spartan-ng/ui-icon-helm';
+import { lucideUndo2 } from '@ng-icons/lucide';
+import { DropdownMenuComponent } from "./ui/dropdown-menu/dropdown-menu.component";
+import { MenuActionDirective } from './directives/menu-action.directive';
+import { MemoInputComponent } from "./components/memo-input/memo-input.component";
 
 export type UiMode = "view" | "edit";
 
@@ -15,6 +33,7 @@ export type UiMode = "view" | "edit";
   selector: 'app-root',
   standalone: true,
   imports: [
+    CommonModule,
     RouterOutlet,
     HlmButtonDirective,
     MemoViewComponent,
@@ -23,15 +42,35 @@ export type UiMode = "view" | "edit";
     HlmSwitchComponent,
     HlmLabelDirective,
     HlmCheckboxComponent,
-    NgToggleModule
+    NgToggleModule,
+    BrnMenuTriggerDirective,
+    HlmMenuComponent,
+    HlmMenuGroupComponent,
+    HlmMenuItemDirective,
+    HlmMenuItemIconDirective,
+    HlmMenuItemSubIndicatorComponent,
+    HlmMenuLabelComponent,
+    HlmMenuSeparatorComponent,
+    HlmMenuShortcutComponent,
+    HlmSubMenuComponent,
+    DropdownMenuComponent,
+    MenuActionDirective,
+    MemoInputComponent
   ],
   templateUrl: './app.component.html',
+  providers: [provideIcons({ lucideUndo2 })],
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  refetchContent() {
+  
+  }
+  
   setMemo(m: Memo) {
     this.selectedMemo = m;
   }
+
+  bookmarks = ["https://youtube.com", "https://portal.ajou.ac.kr"]
 
   mode: UiMode = "view";
   detechModeChange(mode: UiMode) {
@@ -54,5 +93,4 @@ export class AppComponent {
       this.selectedMemo = undefined;
     }
   }
-
 }

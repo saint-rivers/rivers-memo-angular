@@ -1,12 +1,23 @@
 <div class="flex flex-row xl:px-48 px-0 py-12 w-screen h-screen">
-  <div class="flex flex-col w-1/5 rounded-lg p-4 gap-4 border-r">
-    <h1 class="font-bold text-lg text-primary-1 px-3">Tags Filter</h1>
-    <!-- <button class="hover:border-dashed border border-black transition-all">+ New Tag</button> -->
-    <app-tags-view (select)="handleTagSelect($event)"></app-tags-view>
+  <div class="flex flex-col w-1/5 rounded-lg p-4 gap-8 border-r">
+    <div class="flex flex-col">
+      <h1 class="font-bold text-lg text-primary-1 px-3 mb-2">Bookmarks</h1>
+      @for (b of bookmarks; track b) {
+      <a class="
+      py-1 px-3 
+      hover:text-secondary-2
+      hover:bg-white border border-transparent hover:shadow rounded
+      " [href]="b" target="_blank">{{b}}</a>
+      }
+    </div>
+
+    <div class="flex flex-col gap-4">
+      <h1 class="font-bold text-lg text-primary-1 px-3">Tags Filter</h1>
+      <app-tags-view (select)="handleTagSelect($event)"></app-tags-view>
+    </div>
   </div>
 
-
-  <div class="flex flex-col h-full w-4/5">
+  <div class="flex flex-col h-full w-3/5">
     <!-- begin: toolbar -->
     <div class="flex flex-row items-center justify-between px-6">
       <h1 class="font-bold text-xl text-primary-1">Title</h1>
@@ -32,4 +43,6 @@
         class=""></app-memo-view>
     </div>
   </div>
+
+  <app-memo-input (postSuccess)="refetchContent()" class="w-1/5 pr-4"></app-memo-input>
 </div>
