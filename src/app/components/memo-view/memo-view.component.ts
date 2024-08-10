@@ -38,7 +38,8 @@ export class MemoViewComponent {
   memos: any[] = [];
   ngOnInit() {
     this.memoService
-      .fetchMemos(this.size)
+      .fetchMemos(this.size);
+    this.memoService.memos$
       .subscribe((res: any) => {
         this.memos = res;
       });
@@ -47,7 +48,8 @@ export class MemoViewComponent {
   @Input() selectedTags!: string[];
   ngOnChanges() {
     this.memoService
-      .fetchTagFilteredMemoes(this.size, this.selectedTags, this.lastId)
+      .fetchTagFilteredMemoes(this.size, this.selectedTags, this.lastId);
+    this.memoService.memos$
       .subscribe((res: any) => {
         this.memos = res;
       });

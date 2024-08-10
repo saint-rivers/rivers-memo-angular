@@ -12,18 +12,22 @@ import { MemoService } from '@services/memo.service';
 export class MemoInputComponent {
 
   constructor(private memoService: MemoService) { }
+  isSaving = false;
 
   msg = new FormControl('');
 
   save(e: SubmitEvent) {
     e.preventDefault();
-    // if (this.msg.value !== "" && this.msg.value) {
-    this.memoService
-      .insertMemo({ message: this.msg.value!, tags: [] })
-      .subscribe();
-    this.msg.reset();
-    this.postSuccess.emit(true);
-    // }
+
+    if (this.msg.value !== "" && this.msg.value) {
+      this.isSaving = true;
+      this.memoService.insertMemo(
+        { message: this.msg.value, tags: [] },
+        () => { this.isSaving = false; }
+      );
+      this.msg.reset();
+      this.postSuccess.emit(true);
+    }
   }
 
   @Output() postSuccess = new EventEmitter<boolean>();
