@@ -1,1 +1,16 @@
-<p>bookmarks works!</p>
+<div class="flex flex-col">
+  <div class="flex flex-row justify-between items-baseline">
+    <h1 class="px-3">Bookmarks</h1>
+    <button class="hover:shadow shadow-secondary-1 bg-white transition-colors px-4 
+      border rounded-lg text-left 
+      ">Edit</button>
+  </div>
+
+  @for (b of bookmarks; track b) {
+  <a class="
+  py-1 px-3 
+  hover:text-secondary-2
+  hover:bg-white border border-transparent hover:shadow rounded
+  " [href]="b" target="_blank">{{b}}</a>
+  }
+</div>

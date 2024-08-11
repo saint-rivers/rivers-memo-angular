@@ -1,14 +1,19 @@
-<button
-  class="hover:shadow shadow-secondary-1 bg-white transition-colors px-4 border rounded-lg text-left hover:border-red-300 hover:bg-red-500 hover:text-red-50"
-  (click)="clearTags()">Clear</button>
+<div class="flex flex-col gap-4">
+  <div class="flex flex-row justify-between items-baseline">
+    <h1 class="px-3">Tags Filter</h1>
+    <button
+      class="hover:shadow shadow-secondary-1 bg-white transition-colors px-4 border rounded-lg text-left hover:border-red-300 hover:bg-red-500 hover:text-red-50"
+      (click)="clearTags()">Clear</button>
+  </div>
 
-<div class="mt-6 flex flex-row flex-wrap gap-1 text-primary-1">
-  @for (tag of tags; track tag) {
-  <button class="hover:shadow shadow-secondary-1 transition-colors px-4 hover:border-secondary-1 border rounded-lg "
-    [ngClass]="{
+  <div class=" flex flex-row flex-wrap gap-1 text-primary-1">
+    @for (tag of tags; track tag) {
+    <button class="hover:shadow shadow-secondary-1 transition-colors px-4 hover:border-secondary-1 border rounded-lg "
+      [ngClass]="{
       'bg-primary-1 text-gray-100': tag.isSelected,
       'bg-white': !tag.isSelected,
   }" (click)="selectTag(tag.name)">{{tag.name}}
-  </button>
-  }
+    </button>
+    }
+  </div>
 </div>

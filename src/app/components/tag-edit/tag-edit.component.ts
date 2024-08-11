@@ -36,13 +36,13 @@ export class TagEditComponent {
       return;
     }
 
-    this.memoService
-      .putTags(this.memo.id, added, removed)
-      .subscribe((r: any) => {
-        this.tag.setValue("");
-        this.assignedTags = [];
-        this.tagsSet.emit(true);
-      });
+    // this.memoService
+    //   .putTags(this.memo.id, added, removed)
+    //   .subscribe((r: any) => {
+    //     this.tag.setValue("");
+    //     this.assignedTags = [];
+    //     this.tagsSet.emit(true);
+    //   });
   }
 
   @Input() memo?: Memo

@@ -41,15 +41,27 @@ export class MemoService {
     return this.http.post(`${env.serverUrl}/api/v1/memo/${memoId}/tags`, { tags });
   }
 
-  putTags(id: number, added: string[], removed: string[]) {
-    return this.http.put(`${env.serverUrl}/api/v1/memo/${id}/tags`, { removed, added })
+  putTags(id: number, added: string[], removed: string[], callback: () => void) {
+    return this.http
+      .put(`${env.serverUrl}/api/v1/memo/${id}/tags`, { removed, added })
+      .subscribe(res => {
+        callback();
+        this.fetchMemos(10, "");
+      })
   }
-  
+
   insertMemo(payload: { message: string, tags: string[] }, callback: () => void) {
     this.http.post(`${env.serverUrl}/api/v1/memo`, { ...payload })
       .subscribe(() => {
         callback();
         this.fetchMemos(10, "");
       })
+  }
+
+
+  // editing memo functions
+  editingMemo$ = new BehaviorSubject<Memo | null>(null);
+  setEditingMemo(m: Memo | null) {
+    this.editingMemo$.next(m);
   }
 }

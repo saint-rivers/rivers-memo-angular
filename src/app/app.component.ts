@@ -26,6 +26,8 @@ import { lucideUndo2 } from '@ng-icons/lucide';
 import { DropdownMenuComponent } from "./ui/dropdown-menu/dropdown-menu.component";
 import { MenuActionDirective } from './directives/menu-action.directive';
 import { MemoInputComponent } from "./components/memo-input/memo-input.component";
+import { MemoEditComponent } from "./components/memo-edit/memo-edit.component";
+import { BookmarksComponent } from "./pages/bookmarks/bookmarks.component";
 
 export type UiMode = "view" | "edit";
 
@@ -55,27 +57,15 @@ export type UiMode = "view" | "edit";
     HlmSubMenuComponent,
     DropdownMenuComponent,
     MenuActionDirective,
-    MemoInputComponent
-  ],
+    MemoInputComponent,
+    MemoEditComponent,
+    BookmarksComponent
+],
   templateUrl: './app.component.html',
   providers: [provideIcons({ lucideUndo2 })],
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  refetchContent() {
-  
-  }
-  
-  setMemo(m: Memo) {
-    this.selectedMemo = m;
-  }
-
-  bookmarks = ["https://youtube.com", "https://portal.ajou.ac.kr"]
-
-  mode: UiMode = "view";
-  detechModeChange(mode: UiMode) {
-    this.mode = mode;
-  }
 
   selectedTags: string[] = [];
   handleTagSelect(tags: Tag[]) {

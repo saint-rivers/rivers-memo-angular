@@ -1,0 +1,56 @@
+<div class="flex flex-col justify-between h-full">
+  <div class="">
+    <div class="flex flex-row justify-between items-baseline mb-2">
+      <h1>Edit</h1>
+      <button [hidden]="memo == null" (click)="closePane()">Close</button>
+    </div>
+
+    @if (memo != null) {
+    <img appImageFallback [src]="memo.image_url" class="w-24 h-24 object-cover rounded-lg shadow">
+    @if(memo.title != ""){
+    <p class="italic text-gray-500 py-3 text-ellipsis overflow-hidden whitespace-nowrap">{{memo.title}}</p>
+    } @else {
+    <p class="italic text-gray-500 py-3">No Title</p>
+    }
+
+    <div class="flex flex-row gap-2 items-baseline">
+      <label for="tag-input">Tags: </label>
+      <form (submit)="addTagToList($event)" class="w-full">
+        <input id="tag-input" type="text" [formControl]="tag" class="
+        w-full py-2 outline-none
+      text-primary-1 transition-colors bg-inherit border-b 
+      hover:border-secondary-1 hover:text-secondary-2" rows="1" hlmInput placeholder="add tags here..." />
+      </form>
+    </div>
+
+    <p class="flex flex-wrap gap-2 text-gray-700 my-3">
+      @for (t of assignedTags; track t) {
+      <span class="border rounded-xl py-1 px-3 text-sm text-bold hover:bg-secondary-1 cursor-pointer"
+        (click)="removeTag(t)" hlmBadge>{{t}}</span>
+      } @empty {
+      <span class="italic text-gray-400">none</span>
+      }
+    </p>
+    }
+  </div>
+
+
+  <div class="flex flex-row justify-between">
+    <button [hidden]="memo == null" class="
+    w-24 py-1 px-2 rounded-lg
+    border transition-colors
+    hover:bg-red-500 hover:text-white
+    ">Delete</button>
+
+    @if(isSaving) {
+    <div class="loader mx-auto"></div>
+    }@else {
+    <button [hidden]="memo == null" class="
+    w-24 py-1 px-2 rounded-lg
+    border transition-colors bg-primary-1 text-white
+    hover:bg-primary-2
+    " (click)="updateTags()">Tag</button>
+    }
+  </div>
+
+</div>

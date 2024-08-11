@@ -9,4 +9,6 @@ import { Component } from '@angular/core';
 })
 export class BookmarksComponent {
 
+  bookmarks = ["https://youtube.com", "https://portal.ajou.ac.kr"]
+  
 }

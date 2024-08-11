@@ -1,55 +1,23 @@
-<!-- <app-tag-edit></app-tag-edit> -->
-<div class="overflow-x-hidden min-w-full h-full rounded-md border-border flex flex-col"
-  [ngClass]="{'': mode == 'view', '': mode == 'edit'}">
+<h1 class="px-2">Memos</h1>
+<p class="px-2 pb-2 pt-1 text-sm italic text-gray-500">[Right click] on a Memo to select for editing</p>
+<hr>
 
-  @if (mode == 'edit') {
+<div class="overflow-x-hidden min-w-full h-full rounded-md border-border flex flex-col">
   <div class="py-2">
     @for (m of memos; track m) {
-    <button (click)="selectMemo(m)" class="
-    hover:bg-white hover:shadow 
-    rounded-xl transition-all cursor-pointer 
-    group flex flex-row p-2 gap-3 text-left
-    ">
-      <img appImageFallback [src]="m.image_url" class="w-24 h-24 object-cover rounded-lg shadow">
-      <div class="
-    flex flex-col py-1 justify-evenly 
-    h-full lg:w-[520px] md:w-[480px] sm:w-[200px] w-[120px]
-    ">
-        <h1
-          class="text-ellipsis overflow-hidden whitespace-nowrap w-full text-gray-600 group-hover:text-gray-900 transition-colors">
-          {{m.title}}</h1>
-        <p
-          class="text-ellipsis overflow-hidden whitespace-nowrap w-full text-gray-700 group-hover:text-secondary-2 transition-colors">
-          {{m.link}}</p>
-        <div class="text-gray-700 mt-2">
-          @for (t of m.tags; track t) {
-          <span class="bg-gray-100 border rounded-xl mx-1 py-1 px-3 text-sm text-bold cursor-pointer"
-            hlmBadge>{{t}}</span>
-          }
-        </div>
-      </div>
-    </button>
-    }
-    <div class="h-52"></div>
-  </div>
-  }
-
-  @if (mode == 'view') {
-  <div class="py-2">
-    @for (m of memos; track m) {
-    <a [href]="m.link" target="_blank" class="
+    <a [href]="m.link" target="_blank" [title]="m.title" class="
       hover:bg-white hover:shadow 
       rounded-xl transition-all cursor-pointer 
       group flex flex-row p-2 gap-3
-      ">
-      <img appImageFallback [src]="m.image_url" class="w-24 h-24 object-cover rounded-lg shadow">
+      " appRightClick (rtclick)="selectMemo($event, m)">
+      <img appImageFallback [src]="m.image_url" class="w-20 h-20 object-cover rounded-lg shadow">
       <div class="
       flex flex-col py-1 justify-evenly 
       h-full lg:w-[520px] md:w-[480px] sm:w-[200px] w-[120px]
       ">
-        <h1
+        <h2
           class="text-ellipsis overflow-hidden whitespace-nowrap w-full text-gray-600 group-hover:text-gray-900 transition-colors">
-          {{m.title}}</h1>
+          {{m.title}}</h2>
         <p
           class="text-ellipsis overflow-hidden whitespace-nowrap w-full text-gray-700 group-hover:text-secondary-2 transition-colors">
           {{m.link}}</p>
@@ -62,6 +30,6 @@
       </div>
     </a>
     }
+    <div class="h-32"></div>
   </div>
-  }
 </div>
