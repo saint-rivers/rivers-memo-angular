@@ -32,12 +32,14 @@ export class MemoEditComponent {
       .subscribe(data => {
         this.memo = data;
         if (this.memo != null) {
-          this.assignedTags = this.memo.tags;
-          this.originalTags = this.memo.tags;
-        } else {
-          this.assignedTags = [];
-          this.originalTags = [];
+          if (this.memo.tags.length > 0) {
+            this.assignedTags = this.memo.tags;
+            this.originalTags = this.memo.tags;
+            return;
+          }
         }
+        this.assignedTags = [];
+        this.originalTags = [];
       });
   }
 

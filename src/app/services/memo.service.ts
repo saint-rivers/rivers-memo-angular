@@ -9,10 +9,13 @@ import { Memo } from '@panels/memo/memo-view/memo-view.component';
 })
 export class MemoService {
   memos$ = new BehaviorSubject<Memo[]>([]);
+  size = 10;
+  lastId = new BehaviorSubject<number>(0);
+
   constructor(private http: HttpClient) { }
 
-  fetchMemos(size: number, last?: string) {
-    if (!last) last = "";
+  fetchMemos(size: number, last?: number) {
+    if (!last) last = 0;
     const params = new HttpParams({
       fromObject: { size, last }
     });
@@ -22,8 +25,8 @@ export class MemoService {
       });
   }
 
-  fetchTagFilteredMemoes(size: number, tags: string[], last?: string) {
-    if (!last) last = "";
+  fetchTagFilteredMemoes(size: number, tags: string[], last?: number) {
+    if (!last) last = 0;
     const params = new HttpParams({
       fromObject: { size, last, tag: tags }
     });
@@ -46,7 +49,7 @@ export class MemoService {
       .put(`${env.serverUrl}/api/v1/memo/${id}/tags`, { removed, added })
       .subscribe(res => {
         callback();
-        this.fetchMemos(10, "");
+        this.fetchMemos(10, this.lastId.value);
       })
   }
 
@@ -54,15 +57,26 @@ export class MemoService {
     this.http.post(`${env.serverUrl}/api/v1/memo`, { ...payload })
       .subscribe(() => {
         callback();
-        this.fetchMemos(10, "");
+        this.fetchMemos(10, this.lastId.value);
       })
   }
 
   delete(id: number, callback: () => void) {
     this.http.delete(`${env.serverUrl}/api/v1/memo/${id}`).subscribe(() => {
       callback();
-      this.fetchMemos(10, "");
+      this.fetchMemos(10, this.lastId.value);
     })
+  }
+
+  searchMemo(searchKey: string, size: number, lastId: number) {
+    const params = new HttpParams();
+    params.set('size', size.toString());
+    params.set('last', lastId.toString());
+    return this.http.get(`${env.serverUrl}/api/v1/memo/${searchKey}`, {
+      params: new HttpParams()
+        .set('size', size.toString())
+        .set('last', lastId.toString())
+    });
   }
 
 

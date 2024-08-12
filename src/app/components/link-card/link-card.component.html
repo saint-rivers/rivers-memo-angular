@@ -1,0 +1,29 @@
+<a [href]="memo.link" target="_blank" [title]="memo.title" class="
+hover:bg-white hover:shadow 
+rounded-xl transition-all cursor-pointer 
+group flex flex-row p-2 gap-3
+">
+  <img appImageFallback [src]="memo.image_url" class="w-20 h-20 object-cover rounded-lg shadow">
+  <div class="
+flex flex-col py-1 justify-evenly 
+h-full lg:w-[520px] md:w-[480px] sm:w-[200px] w-[120px]
+">
+    <h2
+      class="text-ellipsis overflow-hidden whitespace-nowrap w-full text-gray-600 group-hover:text-gray-900 transition-colors">
+      {{memo.title}}</h2>
+    <p
+      class="text-ellipsis overflow-hidden whitespace-nowrap w-full text-gray-700 group-hover:text-secondary-2 transition-colors">
+      {{memo.link}}</p>
+
+    @if(memo.tags){
+    <p class="flex flex-wrap gap-2 text-gray-700 my-3">
+      @for (t of memo.tags; track t) {
+      <span class="border rounded-xl py-1 px-3 text-sm text-bold hover:bg-secondary-1 cursor-pointer"
+        hlmBadge>{{t}}</span>
+      } @empty {
+      <span class="italic text-gray-400">none</span>
+      }
+    </p>
+    }
+  </div>
+</a>
