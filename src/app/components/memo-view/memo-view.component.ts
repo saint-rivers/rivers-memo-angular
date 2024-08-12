@@ -46,6 +46,7 @@ export type Memo = {
 export class MemoViewComponent {
   size = 10;
   lastId = "";
+  idHistory: string[] = [];
 
   constructor(private memoService: MemoService) { }
 
@@ -85,5 +86,17 @@ export class MemoViewComponent {
     } else {
       this.memoService.setEditingMemo(memo);
     }
+  }
+
+  nextPage() {
+    if (this.memos.length > 0) {
+      this.idHistory.push(this.lastId);
+      this.lastId = this.memos[this.memos.length - 1].id.toString();
+      this.memoService.fetchMemos(this.size, this.lastId);
+    }
+  }
+  previousPage() {
+    this.lastId = this.idHistory.pop() ?? "";
+    this.memoService.fetchMemos(this.size, this.lastId);
   }
 }
