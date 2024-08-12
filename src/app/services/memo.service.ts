@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { env } from '@environments/env';
-import { Memo } from '../components/memo-view/memo-view.component';
+import { Memo } from '@panels/memo/memo-view/memo-view.component';
 
 @Injectable({
   providedIn: 'root'

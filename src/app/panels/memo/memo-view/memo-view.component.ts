@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component,  Input,  } from '@angular/core';
+import { Component, Input, } from '@angular/core';
 import { MemoService } from '@services/memo.service';
-import { ImageFallbackDirective } from '../../directives/image-fallback.directive';
-import { ContextMenuComponent } from '../../ui/context-menu/context-menu.component';
-import { RightClickDirective } from '../../directives/right-click.directive';
-import { FunctionButtonComponent } from '../function-button/function-button.component';
+import { ImageFallbackDirective } from '@directives/image-fallback.directive';
+import { RightClickDirective } from '@directives/right-click.directive';
+import { FunctionButtonComponent } from '@components/function-button/function-button.component';
 
 export type Memo = {
   id: number,
@@ -20,7 +19,6 @@ export type Memo = {
   standalone: true,
   imports: [
     CommonModule,
-    ContextMenuComponent,
     ImageFallbackDirective,
     RightClickDirective,
     FunctionButtonComponent

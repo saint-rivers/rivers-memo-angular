@@ -24,6 +24,15 @@
       "@environments/*": [
         "./src/environments/*"
       ],
+      "@directives/*": [
+        "./src/app/directives/*"
+      ],      
+      "@components/*": [
+        "./src/app/components/*"
+      ],
+      "@panels/*": [
+        "./src/app/panels/*"
+      ],
       "@services/*": [
         "./src/app/services/*"
       ],

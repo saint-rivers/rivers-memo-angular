@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { MemoService } from '@services/memo.service';
 import { Memo } from '../memo-view/memo-view.component';
 import { CommonModule } from '@angular/common';
-import { ImageFallbackDirective } from '../../directives/image-fallback.directive';
+import { ImageFallbackDirective } from '@directives/image-fallback.directive';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
