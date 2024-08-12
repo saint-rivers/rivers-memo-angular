@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-bookmarks',
@@ -10,5 +10,5 @@ import { Component } from '@angular/core';
 export class BookmarksComponent {
 
   bookmarks = ["https://youtube.com", "https://portal.ajou.ac.kr"]
-  
+
 }

@@ -58,10 +58,18 @@ export class MemoService {
       })
   }
 
+  delete(id: number, callback: () => void) {
+    this.http.delete(`${env.serverUrl}/api/v1/memo/${id}`).subscribe(() => {
+      callback();
+      this.fetchMemos(10, "");
+    })
+  }
+
 
   // editing memo functions
   editingMemo$ = new BehaviorSubject<Memo | null>(null);
   setEditingMemo(m: Memo | null) {
     this.editingMemo$.next(m);
   }
+
 }

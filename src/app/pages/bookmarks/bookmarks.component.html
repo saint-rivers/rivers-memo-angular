@@ -3,7 +3,7 @@
     <h1 class="px-3">Bookmarks</h1>
     <button class="hover:shadow shadow-secondary-1 bg-white transition-colors px-4 
       border rounded-lg text-left 
-      ">Edit</button>
+      " (click)="myDialog.show()">Edit</button>
   </div>
 
   @for (b of bookmarks; track b) {
@@ -14,3 +14,7 @@
   " [href]="b" target="_blank">{{b}}</a>
   }
 </div>
+
+<dialog #myDialog class="border shadow-lg p-4 w-2/3 h-1/2">
+  <button (click)="myDialog.close()">OK</button>
+</dialog>

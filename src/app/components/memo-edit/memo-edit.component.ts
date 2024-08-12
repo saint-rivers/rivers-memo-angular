@@ -78,4 +78,13 @@ export class MemoEditComponent {
     this.memo = null;
   }
 
+  isDeleting = false;
+  deleteMemo(id: number) {
+    this.isDeleting = true;
+    this.memoService.delete(id, () => {
+      this.isDeleting = false;
+      this.memoService.setEditingMemo(null);
+    });
+  }
+
 }

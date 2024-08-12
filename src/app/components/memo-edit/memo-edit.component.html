@@ -35,12 +35,18 @@
   </div>
 
 
+  @if (memo != null) {
   <div class="flex flex-row justify-between">
+
+    @if(isDeleting) {
+    <div class="loader mx-auto"></div>
+    }@else {
     <button [hidden]="memo == null" class="
     w-24 py-1 px-2 rounded-lg
     border transition-colors
     hover:bg-red-500 hover:text-white
-    ">Delete</button>
+    " (click)="deleteMemo(memo.id)">Delete</button>
+    }
 
     @if(isSaving) {
     <div class="loader mx-auto"></div>
@@ -52,5 +58,6 @@
     " (click)="updateTags()">Tag</button>
     }
   </div>
+  }
 
 </div>
