@@ -31,14 +31,18 @@ export type Memo = {
   styleUrl: './memo-view.component.css'
 })
 export class MemoViewComponent {
+  closeDialog() {
+    // this.searchResults = [];
+    this.key.reset();
+  }
+
   key = new FormControl('')
   searchResults: Memo[] = [];
   search(e: SubmitEvent) {
     e.preventDefault();
     this.memoService.searchMemo(this.key.value!, this.memoService.size, 0)
       .subscribe((res: any) => {
-        console.log(res);
-
+        this.key.reset();
         this.searchResults = res;
       })
   }
