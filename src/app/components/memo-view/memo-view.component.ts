@@ -1,26 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { Component,  Input,  } from '@angular/core';
 import { MemoService } from '@services/memo.service';
-import { UiMode } from '../../app.component';
 import { ImageFallbackDirective } from '../../directives/image-fallback.directive';
 import { ContextMenuComponent } from '../../ui/context-menu/context-menu.component';
-import { BrnContextMenuTriggerDirective, BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import {
-  HlmMenuComponent,
-  HlmMenuGroupComponent,
-  HlmMenuItemCheckComponent,
-  HlmMenuItemCheckboxDirective,
-  HlmMenuItemDirective,
-  HlmMenuItemIconDirective,
-  HlmMenuItemRadioComponent,
-  HlmMenuItemRadioDirective,
-  HlmMenuItemSubIndicatorComponent,
-  HlmMenuLabelComponent,
-  HlmMenuSeparatorComponent,
-  HlmMenuShortcutComponent,
-  HlmSubMenuComponent,
-} from '@spartan-ng/ui-menu-helm';
 import { RightClickDirective } from '../../directives/right-click.directive';
+import { FunctionButtonComponent } from '../function-button/function-button.component';
 
 export type Memo = {
   id: number,
@@ -39,6 +23,7 @@ export type Memo = {
     ContextMenuComponent,
     ImageFallbackDirective,
     RightClickDirective,
+    FunctionButtonComponent
   ],
   templateUrl: './memo-view.component.html',
   styleUrl: './memo-view.component.css'

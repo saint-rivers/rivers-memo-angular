@@ -1,10 +1,10 @@
 <h1 class="px-2">Memos</h1>
 <p class="px-2 pb-2 pt-1 text-sm italic text-gray-500">[Right click] on a Memo to select for editing</p>
 <div class="px-2 flex flex-row justify-between py-2">
-  <button>Search</button>
+  <app-function-button (click)="nextPage()" [matIconName]="'search'"></app-function-button>
   <div class="flex gap-2">
-    <button (click)="previousPage()">prev</button>
-    <button (click)="nextPage()">next</button>
+    <app-function-button (click)="previousPage()" [matIconName]="'arrow_left'"></app-function-button>
+    <app-function-button (click)="nextPage()" [matIconName]="'arrow_right'"></app-function-button>
   </div>
 </div>
 <hr>
